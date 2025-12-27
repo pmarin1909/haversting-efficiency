@@ -1,0 +1,143 @@
+\documentclass[a4paper,11pt,oneside]{report}
+\usepackage[table,xcdraw, x11names,dvipsnames,table]{xcolor}
+
+\usepackage{longtable}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{courier}
+\usepackage{placeins}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage{graphics}
+\usepackage{color}
+\usepackage{lipsum}
+\usepackage{csquotes}
+\usepackage[left=2.00cm, right=2.00cm, top=2.00cm, bottom=2.00cm]{geometry}
+\usepackage{array} 
+\usepackage{ltablex}
+\usepackage{longtable}
+\usepackage[strict]{changepage}
+\usepackage{tikz}
+\usepackage{etoolbox}
+\usepackage{multirow}
+\usepackage{setspace} 
+\usepackage{outlines}
+\usepackage{tikz}  %burbujas de texto
+\usepackage{textcomp} % si quieres superíndices como "*"
+\usepackage[toc,page]{appendix}
+\usepackage[none]{hyphenat} % para evitar que se dividan las palabras
+\usepackage{caption}
+\captionsetup{width=\textwidth} % o más grande si es necesario
+
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=grey3,
+    filecolor=magenta,      
+    urlcolor=azul5,
+    pdfpagemode=FullScreen,
+    }
+\urlstyle{same}
+
+
+% SI VAS A USAR GLOSARIO DESCOMENTAR ESTO
+\usepackage{glossaries}    %Glosario
+\makeglossaries
+\input{glosario.tex} % definiciones externas
+
+% -----------------------------------------
+
+
+
+\newcommand{\burbuja}[2]{%
+    \tikz[baseline=(bubble.center)]{
+        \node[draw, fill=blue!20, text width=#1, align=center, rounded corners] (bubble) {#2};
+    }%
+}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+% SI VAS A USAR BIBLIOGRAFIA DESCOMENTA ESTO
+%\usepackage[backend=biber]{biblatex}
+%\addbibresource{dummy.bib}
+% -----------------------------------------
+
+\usepackage{booktabs}
+
+%Los colores están enumerados de menos a mas tono y saturación
+% PALETA DE COLORES: https://www.rapidtables.com/web/color/RGB_Color.html
+\definecolor{azul1}{RGB}{204, 229, 255}
+\definecolor{azul2}{RGB}{153, 204, 255}
+\definecolor{azul3}{RGB}{102, 178, 255}
+\definecolor{azul4}{RGB}{51, 153, 255}
+\definecolor{azul5}{RGB}{0, 128, 255}
+\definecolor{azul6}{RGB}{0, 102, 204}
+\definecolor{azul7}{RGB}{0, 76, 153}
+\definecolor{azul8}{RGB}{0, 51, 102}
+\definecolor{azul_lila1}{RGB}{204, 204, 255}
+\definecolor{azul_lila2}{RGB}{153, 153, 255}    
+\definecolor{azul_lila3}{RGB}{102, 102, 255}
+\definecolor{azul_lila4}{RGB}{51, 51, 255}
+\definecolor{azul_lila5}{RGB}{0, 0, 255}
+\definecolor{azul_lila6}{RGB}{0, 0, 204}
+\definecolor{azul_lila7}{RGB}{0, 0, 153}
+\definecolor{azul_lila8}{RGB}{0, 0, 102}
+
+\definecolor{purple_ubuntu}{RGB}{0.172, 0.000, 0.118}
+\definecolor{purple_blue}{RGB}{142,170,219}
+\definecolor{rojo}{RGB}{224, 59, 35}
+\definecolor{grey1}{RGB}{238, 237, 237}
+\definecolor{grey2}{RGB}{180, 178, 177}
+\definecolor{grey3}{RGB}{67,75, 77}
+
+%Colores terminal
+\definecolor{terminal-bg}{rgb}{0.2, 0.2, 0.2}  % Fondo oscuro
+\definecolor{terminal-fg}{rgb}{1.0, 1.0, 1.0}  % Texto blanco
+\definecolor{terminal-green}{rgb}{0.5, 1.0, 0.5} % Verde para el usuario
+\definecolor{terminal-blue}{rgb}{0.4, 0.5, 1.0} % Azul para el directorio
+
+%Caja de la terminal
+\newtcolorbox{terminalbox}{colback=terminal-bg, colframe=terminal-bg, 
+  boxrule=0pt, left=3pt, right=3pt, top=3pt, bottom=3pt, 
+  sharp corners, boxsep=5pt, width=\linewidth}
+
+
+% Definir comando para formatear automáticamente el prompt
+\newcommand{\terminalPrompt}[4]{%
+   \textbf{\textcolor{terminal-green}{#1}} % Usuario en verde
+   \textbf{\textcolor{terminal-fg}{@}}     % Separador en blanco
+    \textbf{\textcolor{terminal-blue}{#2}}  % Host en azul
+    \textbf{\textcolor{terminal-fg}{:}}
+    \textbf{\textcolor{terminal-blue}{$\thicksim$}}
+    \textbf{\textcolor{terminal-blue}{#3}}
+    \textbf{\textcolor{terminal-fg}{\$}}   % Separador en blanco
+    \textcolor{terminal-fg}{#4}    % Resto del texto en blanco
+}
+
+\setlength{\parskip}{3mm}
+\tcbset{colback=red!5!white,colframe=red!75!black,size=small,
+fonttitle=\bfseries,box align=top}
+\lstdefinestyle{customc}{
+  breaklines=true,
+  language=python,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{purple!40!black},
+  commentstyle=\itshape\color{green!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+
+
+\begin{document}
+    \include{portada/umu.tex}
+    \include{portada/indice.tex}
+    \include{desarrollo}
+    
+
+    %\printbibliography
+\end{document}

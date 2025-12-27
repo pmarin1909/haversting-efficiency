@@ -1,0 +1,17 @@
+reset;
+
+model tierra1.mod;
+data tierra1.dat;
+
+
+
+option solver gurobi;
+
+
+solve;
+
+
+# Mostrar solo asignaciones activas de x1 (Tierra 1)
+display {i in TAREAS_1, k in MESETAS, l in HORARIOS_1[i] : x1[i,k,l] = 1} x1[i,k,l] > "tierra1.txt";
+# Mostrar función objetivo
+display horasimproductivas >> tierra1.txt;
